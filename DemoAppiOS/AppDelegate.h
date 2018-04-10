@@ -17,6 +17,8 @@
 
 - (void)saveContext;
 
+//-- A function to display alert
+- (void)displayAnAlertWith:(NSString *)title andMessage:(NSString *)message;
 
 @end
 

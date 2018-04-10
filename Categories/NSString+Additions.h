@@ -1,8 +1,8 @@
 //  NSString+Additions.h
-//  FactObjective
+//  DemoAppiOS
 //
-//  Created by Nilesh Prajapati on 21/11/17.
-//  Copyright © 2017 Nilesh Prajapati. All rights reserved.
+//  Created by Nischal Hada on 4/10/18.
+//  Copyright © 2018 NischalHada. All rights reserved.
 //
 
 

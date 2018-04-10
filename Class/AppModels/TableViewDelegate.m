@@ -1,9 +1,9 @@
 //
 //  TableViewDelegate.m
-//  FactObjective
+//  DemoAppiOS
 //
-//  Created by Nilesh Prajapati on 23/11/17.
-//  Copyright © 2017 Nilesh Prajapati. All rights reserved.
+//  Created by Nischal Hada on 4/10/18.
+//  Copyright © 2018 NischalHada. All rights reserved.
 //
 
 #import "TableViewDelegate.h"
@@ -18,7 +18,7 @@
 #pragma mark Initial methods for alloc & dealloc
 #pragma mark ==================================
 
-- (id)initTableView:(UITableView *)tableView withViewController:(FactsController *)controller {
+- (id)initTableView:(UITableView *)tableView withViewController:(ListViewModels *)controller {
     if (self == [super init]) {
         _factsController = controller;
         tableView.delegate = self;

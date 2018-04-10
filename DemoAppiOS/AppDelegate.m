@@ -7,16 +7,25 @@
 //
 
 #import "AppDelegate.h"
+#import "ListViewController.h"
 
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
+// Override point for customization after application launch.
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    
+    ListViewController *tableViewController = [[ListViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:tableViewController];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = navController;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
@@ -94,5 +103,26 @@
         abort();
     }
 }
+
+
+#pragma mark - ==================================
+#pragma mark User-defined functions
+#pragma mark ==================================
+
+- (void)displayAnAlertWith:(NSString *)title andMessage:(NSString *)message {
+    if (@available(iOS 9.0, *)) {
+        UIAlertController *alertController = [[UIAlertController alloc] init];
+        [alertController setTitle:title];
+        [alertController setMessage:message];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [alertController dismissViewControllerAnimated:TRUE completion:nil];
+        }]];
+        [self.window.rootViewController presentViewController:alertController animated:TRUE completion:nil];
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+
 
 @end

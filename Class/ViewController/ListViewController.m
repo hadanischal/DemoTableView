@@ -7,21 +7,39 @@
 //
 
 #import "ListViewController.h"
+#import "Constant+Header.h"
+#import "AppDelegate.h"
+#import "TableViewDataSource.h"
+#import "TableViewDelegate.h"
+#import "ListViewModels.h"
 
+//-- Private declaration properties
 @interface ListViewController ()
+
+@property(strong, nonatomic) UIRefreshControl *refreshControler;
+@property(strong, nonatomic) TableViewDataSource *tableviewDatasource; //-- Tableview datasource
+@property(strong, nonatomic) TableViewDelegate *tableviewDelegate; //-- Tableview delegate
+@property(strong, nonatomic) ListViewModels *viewModels; //-- Controller to handle the actions
 
 @end
 
 @implementation ListViewController
 
+@synthesize refreshControler = _refreshControler;
+@synthesize viewModels = _viewModels;
+@synthesize tableviewDatasource = _tableviewDatasource;
+@synthesize tableviewDelegate = _tableviewDelegate;
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self setupUI];
+    [self setupEventBinding];
+    [self setupUIBinding];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,70 +47,120 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+-(void) dealloc {
+    _refreshControler = nil;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
-}
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+
+// MARK:
+// MARK: Setup UI
+
+-(void) setupUI {
+ 
+    self.navigationItem.title = @"List View";
+
+    //-- Change status bar style
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     
-    // Configure the cell...
+    //-- NavigationBar right bar item
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(btnRefreshClicked:)];
     
-    return cell;
+    //-- Tableview's row height & estimated row height
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    if ([[UIDevice currentDevice].model isEqualToString:@"iPad"] || [[UIDevice currentDevice].model isEqualToString:@"ipad"]) {
+        self.tableView.estimatedRowHeight = 110.0;
+    } else {
+        self.tableView.estimatedRowHeight = 65.0;
+    }
+    self.tableView.tableFooterView = [UIView new];
+    
+    //-- Tableview's pull to refresh control
+    _refreshControler = [[UIRefreshControl alloc] init];
+    if (@available(iOS 10.0, *)) {
+        self.tableView.refreshControl = _refreshControler;
+    } else {
+        [self.tableView addSubview:_refreshControler];
+    }
+    [_refreshControler addTarget:self action:@selector(pullToRefresh:) forControlEvents:UIControlEventValueChanged];
+    
+    //-- Intiate the controller
+    ListViewModels *obj_viewModels = [[ListViewModels alloc] init];
+    obj_viewModels.delegate = (id)self;
+    self.viewModels = obj_viewModels; //-- Assign a controller
+    obj_viewModels = nil;
+    
+    //-- Initiate the datasource for table view & integrate datesource methods with the help of viewModels
+    _tableviewDatasource = [[TableViewDataSource alloc] initTableView:self.tableView withViewController:self.viewModels];
+    //-- Initiate the delegate for table view & integrate delegate methods with the help of viewModels
+    _tableviewDelegate = [[TableViewDelegate alloc] initTableView:self.tableView withViewController:self.viewModels];
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+
+
+-(void) setupEventBinding {}
+
+-(void) setupUIBinding {
+    [self.viewModels fetchDataFromJSONFile];
+
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+
+    
+#pragma mark - ==================================
+#pragma mark viewModels Delegate methods
+#pragma mark ==================================
+
+//-- A delegate method called after the un-successful execution by viewModels
+- (void)connectionDidReceiveFailure:(NSString *)error {
+    self.title = @"";
+    [appDelegate displayAnAlertWith:kALERT andMessage:error];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //-- To hide the network indicator once the response is availble.
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        [_refreshControler endRefreshing];
+    });
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+//-- A delegate method called after the successful execution by viewModels
+- (void)connectionDidFinishLoading:(NSDictionary *)dictResponseInfo {
+    self.title = dictResponseInfo[kTITLE];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //-- To hide the network indicator once the response is availble.
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        [_refreshControler endRefreshing];
+        if (self.viewModels.arrFacts != nil && self.viewModels.arrFacts.count > 0) {
+            self.tableView.hidden = NO;
+        } else {
+            self.tableView.hidden = YES;
+        }
+        [self.tableView reloadData];
+    });
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+#pragma mark - ==================================
+#pragma mark Controls click events
+#pragma mark ==================================
+
+//-- Click event for top right bar button item
+- (IBAction)btnRefreshClicked:(id)sender {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //-- To show the network indicator until the process is running.
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    });
+    [_refreshControler endRefreshing];
+    [self.viewModels fetchDataFromJSONFile];
 }
-*/
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//-- Pull to refresh event by pulling down the tableview
+- (IBAction)pullToRefresh:(id)sender {
+    [_refreshControler beginRefreshing];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //-- To show the network indicator until the process is running.
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    });
+    [self.viewModels fetchDataFromJSONFile];
 }
-*/
 
 @end
+

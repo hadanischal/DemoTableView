@@ -1,15 +1,15 @@
 //
 //  TableViewDataSource.m
-//  FactObjective
+//  DemoAppiOS
 //
-//  Created by Nilesh Prajapati on 23/11/17.
-//  Copyright © 2017 Nilesh Prajapati. All rights reserved.
+//  Created by Nischal Hada on 4/10/18.
+//  Copyright © 2018 NischalHada. All rights reserved.
 //
 
 #import "TableViewDataSource.h"
 #import "NSString+Additions.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "Fact.h"
+#import "ListModel.h"
 
 @interface TableViewDataSource()<UITableViewDataSource>
 @end
@@ -22,7 +22,7 @@
 #pragma mark ==================================
 
 //-- Initialize method
-- (id)initTableView:(UITableView *)tableView withViewController:(FactsController *)controller {
+- (id)initTableView:(UITableView *)tableView withViewController:(ListViewModels *)controller {
     if (self == [super init]) {
         _factsController = controller;
         tableView.dataSource = self;
@@ -57,7 +57,7 @@
     @try {
         if (_factsController.arrFacts.count > 0) {
             //-- To fetch the object based on index
-            Fact *obj_fact = [_factsController.arrFacts objectAtIndex:indexPath.row];
+            ListModel *obj_fact = [_factsController.arrFacts objectAtIndex:indexPath.row];
             
             //-- To display the title text
             if (![obj_fact.title isEqual:[NSNull null]] && [[obj_fact.title trim] length] > 0) {

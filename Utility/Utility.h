@@ -10,4 +10,8 @@
 
 @interface Utility : NSObject
 
++ (void)showSVProgressBlackBackgroundWhiteForeground;
++ (void)showSVProgressWhiteBackgroundBlackForeground;
++ (void)showSVProgressDismiss;
+
 @end

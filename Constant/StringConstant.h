@@ -10,4 +10,10 @@
 #define StringConstant_h
 
 
+#define kTITLE @"title"
+#define kALERT @"Alert !!"
+
+#define kDESCRIPTION @"description"
+#define kIMAGEREF @"imageHref"
+
 #endif /* StringConstant_h */
