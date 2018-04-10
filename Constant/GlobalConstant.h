@@ -39,10 +39,9 @@
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
 #pragma mark - ========================================================
-#pragma mark Application Domain & web-service urls
+#pragma mark Application Domain 
 #pragma mark ========================================================
 
-#define JSON_FILE_URL @"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
 #define appDelegate   ((AppDelegate *)[[UIApplication sharedApplication]delegate])
 
 

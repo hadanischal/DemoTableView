@@ -68,7 +68,7 @@
     START_SV_PROGRESSHUD_BLACKBAGROUND_WHITEFORGROUND
     //-- Search Query preparation
     NSCharacterSet *expectedCharSet = [NSCharacterSet URLQueryAllowedCharacterSet];
-    NSString *urlString = [JSON_FILE_URL stringByAddingPercentEncodingWithAllowedCharacters:expectedCharSet];
+    NSString *urlString = [hGET_TABLE_VIEW_CONTENT stringByAddingPercentEncodingWithAllowedCharacters:expectedCharSet];
     
     //-- Preparing a url from predefined link string.
     NSURL *url = [[NSURL alloc] initWithString:urlString];

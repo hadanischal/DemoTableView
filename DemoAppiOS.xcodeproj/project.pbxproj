@@ -69,12 +69,9 @@
 		AF122E32207C2C920032C374 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF122E48207C377E0032C374 /* Constant+Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Constant+Header.h"; sourceTree = "<group>"; };
 		AF122E49207C37A00032C374 /* ColorsConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorsConstant.h; sourceTree = "<group>"; };
-		AF122E4A207C37B50032C374 /* ErrorMessages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorMessages.h; sourceTree = "<group>"; };
-		AF122E4B207C37CB0032C374 /* FontConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontConstant.h; sourceTree = "<group>"; };
 		AF122E4C207C37E10032C374 /* HTTPConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPConstant.h; sourceTree = "<group>"; };
 		AF122E4D207C37F30032C374 /* StringConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringConstant.h; sourceTree = "<group>"; };
 		AF122E4E207C38060032C374 /* GlobalConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalConstant.h; sourceTree = "<group>"; };
-		AF122E4F207C38190032C374 /* SuccessMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuccessMessage.h; sourceTree = "<group>"; };
 		AF122E8E207C82400032C374 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		AF122E8F207C82400032C374 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
 		AF122E9A207C83F70032C374 /* ListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
@@ -213,12 +210,9 @@
 			children = (
 				AF122E48207C377E0032C374 /* Constant+Header.h */,
 				AF122E49207C37A00032C374 /* ColorsConstant.h */,
-				AF122E4A207C37B50032C374 /* ErrorMessages.h */,
-				AF122E4B207C37CB0032C374 /* FontConstant.h */,
 				AF122E4C207C37E10032C374 /* HTTPConstant.h */,
 				AF122E4D207C37F30032C374 /* StringConstant.h */,
 				AF122E4E207C38060032C374 /* GlobalConstant.h */,
-				AF122E4F207C38190032C374 /* SuccessMessage.h */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
