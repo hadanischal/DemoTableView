@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "ListViewModels.h"
 
 @interface DemoAppiOSTests : XCTestCase
 
@@ -33,6 +34,8 @@
     // This is an example of a performance test case.
     [self measureBlock:^{
         // Put the code you want to measure the time of here.
+        ListViewModels *obj_viewModels = [[ListViewModels alloc] init];
+        [obj_viewModels fetchDataFromJSONFile];
     }];
 }
 

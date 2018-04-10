@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "ListViewModels.h"
 
 @interface DemoAppiOSUITests : XCTestCase
 
@@ -35,6 +36,13 @@
 - (void)testExample {
     // Use recording to get started writing UI tests.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
+    if (@available(iOS 9.0, *)) {
+        XCUIApplication *app = [[XCUIApplication alloc] init];
+        [app.navigationBars[@"ListViewController"].buttons[@"Refresh"] tap];
+        /*@START_MENU_TOKEN@*/[app.tables.cells.staticTexts[@"Click on Refresh icon or \"Pull to Refresh\" to fetch the data from server."] swipeDown];/*[["app.tables",".cells.staticTexts[@\"Click on Refresh icon or \\\"Pull to Refresh\\\" to fetch the data from server.\"]","["," swipeDown];"," swipeRight];",".staticTexts[@\"Click on Refresh icon or \\\"Pull to Refresh\\\" to fetch the data from server.\"]"],[[[-1,0,1]],[[-1,5,2],[-1,1,2]],[[2,4],[2,3]]],[0,1,1]]@END_MENU_TOKEN@*/
+    } else {
+        // Fallback on earlier versions
+    }
 }
 
 @end
