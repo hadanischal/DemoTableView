@@ -23,6 +23,7 @@
 		AF122EB2207C85FB0032C374 /* TableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AF122EB0207C85FB0032C374 /* TableViewDelegate.m */; };
 		AF122EB5207C86610032C374 /* ListViewModels.m in Sources */ = {isa = PBXBuildFile; fileRef = AF122EB4207C86610032C374 /* ListViewModels.m */; };
 		AFD58746207C915900EF1744 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD58745207C915900EF1744 /* Utility.m */; };
+		AFD58748207C9A3400EF1744 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = AFD58747207C9A3400EF1744 /* .gitignore */; };
 		C0DCDA67BDC354D6CD349339 /* libPods-DemoAppiOSUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B9A7B8A564C1FCF7629579 /* libPods-DemoAppiOSUITests.a */; };
 		DB664592C4B46BD89512E01D /* libPods-DemoAppiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DD7A26E0790E0C8B6C6CB9 /* libPods-DemoAppiOS.a */; };
 		F9D593F0B9722C73A95C866E /* libPods-DemoAppiOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF0F69BD36C18F7E4BBFF8D6 /* libPods-DemoAppiOSTests.a */; };
@@ -86,6 +87,7 @@
 		AF122EB4207C86610032C374 /* ListViewModels.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListViewModels.m; sourceTree = "<group>"; };
 		AFD58744207C915900EF1744 /* Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		AFD58745207C915900EF1744 /* Utility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		AFD58747207C9A3400EF1744 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		B58E5A499E19909162CBA07B /* Pods-DemoAppiOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoAppiOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DemoAppiOSTests/Pods-DemoAppiOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF0F69BD36C18F7E4BBFF8D6 /* libPods-DemoAppiOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DemoAppiOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFF4C2FC198BB513313AB66 /* Pods-DemoAppiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoAppiOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DemoAppiOS/Pods-DemoAppiOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		AF122DFD207C2C920032C374 = {
 			isa = PBXGroup;
 			children = (
+				AFD58747207C9A3400EF1744 /* .gitignore */,
 				AFD58743207C904700EF1744 /* Utility */,
 				AF122E46207C373F0032C374 /* Constant */,
 				AF122E8D207C82400032C374 /* Categories */,
@@ -423,6 +426,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFD58748207C9A3400EF1744 /* .gitignore in Resources */,
 				AF122E19207C2C920032C374 /* LaunchScreen.storyboard in Resources */,
 				AF122E16207C2C920032C374 /* Assets.xcassets in Resources */,
 				AF122E11207C2C920032C374 /* Main.storyboard in Resources */,
