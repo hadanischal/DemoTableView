@@ -1,8 +1,9 @@
-Overview
+# DemoTableView
 
+## Overview:
 The purpose of this exercise is to assess candidate developer’s iOS coding knowledge and style. The exercise involves build a “proof of concept” app which consumes a REST service and displays photos with headings and descriptions. The exercise will be evaluated on coding style, understanding of programming concepts, choice of techniques, and also by the developer’s process, as indicated by the trail of git commits.
-Specification
 
+## Specification:
 Create a universal iOS app which:
 1. Ingests a json feed from https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json
 2. You can use a third party json parser to parse this if desired.
@@ -17,7 +18,7 @@ This means some rows will be larger than others.
 10. Either place a refresh button or use pull down to refresh.
 11. Should not block UI when loading the data from the json feed.
 
-Guidelines
+## Guidelines:
 1. Use Git to manage the source code. A clear Git history showing your process is required.
 2. Do not use any .xib files or Story Boards
 3. The app should perform well on an lower specification device such as an iPhone 5
@@ -29,7 +30,7 @@ Guidelines
 9. Commit your changes to git in small chunks with meaningful comments
 10. Don’t use any singletons in your submission
 
-Additional Requirements
+## Additional Requirements:
 1. Style your code according to this style guide https://google.github.io/styleguide/objcguide.xml
 2. Use the Masonry framework for doing autolayout of the cells in your app
 3. Support all iOS versions from the latest back to iOS9
