@@ -47,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		046009E823265A1B00493059 /* ListViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListViewControllerProtocol.h; sourceTree = "<group>"; };
+		04C070A3232533540068168A /* ListViewModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListViewModelProtocol.h; sourceTree = "<group>"; };
 		38DD7A26E0790E0C8B6C6CB9 /* libPods-DemoAppiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DemoAppiOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B55213B5EE5BC79F4681E11 /* Pods-DemoAppiOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoAppiOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DemoAppiOSUITests/Pods-DemoAppiOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7F7C408D16485D1DFC2401A4 /* Pods-DemoAppiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoAppiOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DemoAppiOSTests/Pods-DemoAppiOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 		AF122E93207C839A0032C374 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				04C070A3232533540068168A /* ListViewModelProtocol.h */,
 				AF122EB3207C86610032C374 /* ListViewModels.h */,
 				AF122EB4207C86610032C374 /* ListViewModels.m */,
 			);
@@ -262,6 +265,7 @@
 		AF122E96207C839A0032C374 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				046009E823265A1B00493059 /* ListViewControllerProtocol.h */,
 				AF122E9A207C83F70032C374 /* ListViewController.h */,
 				AF122E9B207C83F70032C374 /* ListViewController.m */,
 			);
@@ -322,7 +326,6 @@
 				AF122E02207C2C920032C374 /* Sources */,
 				AF122E03207C2C920032C374 /* Frameworks */,
 				AF122E04207C2C920032C374 /* Resources */,
-				BB86F8CBC1A879BD42EE211B /* [CP] Embed Pods Frameworks */,
 				697658B395910A41534A88FD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -342,8 +345,6 @@
 				AF122E1D207C2C920032C374 /* Sources */,
 				AF122E1E207C2C920032C374 /* Frameworks */,
 				AF122E1F207C2C920032C374 /* Resources */,
-				0DF7FC9058C65D6B4A4754CB /* [CP] Embed Pods Frameworks */,
-				FB12E86B4874F874F7D4F0CC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -363,8 +364,6 @@
 				AF122E28207C2C920032C374 /* Sources */,
 				AF122E29207C2C920032C374 /* Frameworks */,
 				AF122E2A207C2C920032C374 /* Resources */,
-				1F457E7F8286CCEA2D0E47D7 /* [CP] Embed Pods Frameworks */,
-				7775F315EE4FD8774CCAD518 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -450,21 +449,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0DF7FC9058C65D6B4A4754CB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DemoAppiOSTests/Pods-DemoAppiOSTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		116DABDE20820081018CE1C0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -483,52 +467,22 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1F457E7F8286CCEA2D0E47D7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DemoAppiOSUITests/Pods-DemoAppiOSUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		697658B395910A41534A88FD /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-DemoAppiOS/Pods-DemoAppiOS-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-DemoAppiOS/Pods-DemoAppiOS-resources.sh",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DemoAppiOS/Pods-DemoAppiOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7775F315EE4FD8774CCAD518 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DemoAppiOSUITests/Pods-DemoAppiOSUITests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DemoAppiOS/Pods-DemoAppiOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7F363FCF0F6B4E5EF1C22B7C /* [CP] Check Pods Manifest.lock */ = {
@@ -549,21 +503,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BB86F8CBC1A879BD42EE211B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DemoAppiOS/Pods-DemoAppiOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E81917A8EAE7B6073A26A2ED /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -580,21 +519,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FB12E86B4874F874F7D4F0CC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DemoAppiOSTests/Pods-DemoAppiOSTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

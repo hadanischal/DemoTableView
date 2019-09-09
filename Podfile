@@ -5,7 +5,7 @@ target 'DemoAppiOS' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
 
-pod 'SDWebImage', '~>3.8'
+pod 'SDWebImage', '~> 5.0'
 pod 'SVProgressHUD'
 
   # Pods for DemoAppiOS

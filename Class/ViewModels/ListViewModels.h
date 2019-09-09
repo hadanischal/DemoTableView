@@ -7,18 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ListViewModelProtocol.h"
 
-@protocol ListControllerDeleagte;
-
-@protocol ListControllerDeleagte
-@optional
-- (void)connectionDidReceiveFailure:(NSString *)error;
-- (void)connectionDidFinishLoading:(NSDictionary *)dictResponseInfo;
-@end
-
-@interface ListViewModels : NSObject
+@interface ListViewModels : NSObject<ListViewModelProtocol>
 @property(strong, nonatomic) NSArray *arrFacts;
-@property(assign, nonatomic) id<ListControllerDeleagte> delegate;
 - (void)fetchDataFromJSONFile;
 @end
 
