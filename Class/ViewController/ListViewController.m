@@ -19,20 +19,28 @@
 @property(strong, nonatomic) UIRefreshControl *refreshControler;
 @property(strong, nonatomic) TableViewDataSource *tableviewDatasource; //-- Tableview datasource
 @property(strong, nonatomic) TableViewDelegate *tableviewDelegate; //-- Tableview delegate
-@property(strong, nonatomic) ListViewModels *viewModels; //-- Controller to handle the actions
 
 @end
 
-@implementation ListViewController
+@implementation ListViewController {
+    // The view model - not synthesized
+    id<ListViewModelProtocol> _viewModel;
+}
 
-@synthesize refreshControler = _refreshControler;
-@synthesize viewModels = _viewModels;
-@synthesize tableviewDatasource = _tableviewDatasource;
-@synthesize tableviewDelegate = _tableviewDelegate;
+-(id<ListViewModelProtocol>) listViewModel {
+    return (id<ListViewModelProtocol>) _viewModel;
+}
+
+-(void) setupViewModel {
+    id<ListViewModelProtocol> viewModel = [[ListViewModels alloc] init];
+    _viewModel = viewModel;
+    [_viewModel setViewDelegate:self];
+}
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupViewModel];
     [self setupUI];
     [self setupEventBinding];
     [self setupUIBinding];
@@ -83,29 +91,19 @@
         [self.tableView addSubview:_refreshControler];
     }
     [_refreshControler addTarget:self action:@selector(pullToRefresh:) forControlEvents:UIControlEventValueChanged];
-    
-    //-- Intiate the controller
-    ListViewModels *obj_viewModels = [[ListViewModels alloc] init];
-    obj_viewModels.delegate = (id)self;
-    self.viewModels = obj_viewModels; //-- Assign a controller
-    obj_viewModels = nil;
-    
-    //-- Initiate the datasource for table view & integrate datesource methods with the help of viewModels
-    _tableviewDatasource = [[TableViewDataSource alloc] initTableView:self.tableView withViewController:self.viewModels];
-    //-- Initiate the delegate for table view & integrate delegate methods with the help of viewModels
-    _tableviewDelegate = [[TableViewDelegate alloc] initTableView:self.tableView withViewController:self.viewModels];
-}
 
+    //-- Initiate the datasource for table view & integrate datesource methods with the help of viewModels
+    _tableviewDatasource = [[TableViewDataSource alloc] initTableView:self.tableView withViewController:[self listViewModel]];
+    //-- Initiate the delegate for table view & integrate delegate methods with the help of viewModels
+    _tableviewDelegate = [[TableViewDelegate alloc] initTableView:self.tableView withViewController:[self listViewModel]];
+}
 
 
 -(void) setupEventBinding {}
 
 -(void) setupUIBinding {
-    [self.viewModels fetchDataFromJSONFile];
-
+    [[self listViewModel] fetchDataFromJSONFile];
 }
-
-
     
 #pragma mark - ==================================
 #pragma mark viewModels Delegate methods
@@ -129,7 +127,7 @@
         //-- To hide the network indicator once the response is availble.
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         [_refreshControler endRefreshing];
-        if (self.viewModels.arrFacts != nil && self.viewModels.arrFacts.count > 0) {
+        if ([self listViewModel].arrFacts != nil && [self listViewModel].arrFacts.count > 0) {
             self.tableView.hidden = NO;
         } else {
             self.tableView.hidden = YES;
@@ -149,7 +147,7 @@
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     });
     [_refreshControler endRefreshing];
-    [self.viewModels fetchDataFromJSONFile];
+    [[self listViewModel] fetchDataFromJSONFile];
 }
 
 //-- Pull to refresh event by pulling down the tableview
@@ -159,7 +157,7 @@
         //-- To show the network indicator until the process is running.
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     });
-    [self.viewModels fetchDataFromJSONFile];
+    [[self listViewModel]fetchDataFromJSONFile];
 }
 
 @end

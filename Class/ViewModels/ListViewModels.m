@@ -18,18 +18,30 @@
 @property(strong, nonatomic) NSURLResponse *response;
 @end
 
-@implementation ListViewModels
+@implementation ListViewModels {
+    /** View delegate */
+    __weak id<ListViewControllerProtocol>  _viewDelegate;
+}
+
 @synthesize arrFacts = _arrFacts;
 @synthesize connection = _connection;
 @synthesize data = _data;
 @synthesize response = _response;
-@synthesize delegate = _delegate;
+//@synthesize delegate = _delegate;
 
 - (id)init{
     if (self == [super init]) {
         _arrFacts = [NSArray array];
     }
     return self;
+}
+
+/**
+ * Set the view delegate
+ * @param delegate The view
+ */
+-(void) setViewDelegate:( id<ListViewControllerProtocol>) delegate {
+    _viewDelegate = delegate;
 }
 
 - (void)setArrFacts:(NSArray *)arrFacts {
@@ -95,7 +107,7 @@
     STOP_SV_PROGRESS_HUD
     //-- To reset the web-service related values
     [self resetProperties];
-    [_delegate connectionDidReceiveFailure: [error localizedDescription]];
+    [_viewDelegate connectionDidReceiveFailure: [error localizedDescription]];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -132,7 +144,7 @@
             if (error != nil) {
                 //-- To reset the web-service related values
                 [self resetProperties];
-                [_delegate connectionDidReceiveFailure: [NSString stringWithFormat:@"JSON Parsing Error due to : %@", [error localizedDescription]]];
+                [_viewDelegate connectionDidReceiveFailure: [NSString stringWithFormat:@"JSON Parsing Error due to : %@", [error localizedDescription]]];
             } else {
                 NSLog(@"%@", [dictInfo description]);
                 if (_arrFacts) {
@@ -147,14 +159,14 @@
                         _arrFacts = [_arrFacts arrayByAddingObject:obj_fact];
                     }
                 }];
-                [_delegate connectionDidFinishLoading:dictInfo];
+                [_viewDelegate connectionDidFinishLoading:dictInfo];
                 //-- To reset the web-service related values
                 [self resetProperties];
             }
         } else {
             //-- To reset the web-service related values
             [self resetProperties];
-            [_delegate connectionDidReceiveFailure:@"An error while manipulating data or string conents."];
+            [_viewDelegate connectionDidReceiveFailure:@"An error while manipulating data or string conents."];
         }
     } else {
         //-- To reset the web-service related values
@@ -162,9 +174,9 @@
         if (_data) {
             //-- As becuase downaloded data, first of all, we have to convert it into String format.
             NSString *errorMessage = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
-            [_delegate connectionDidReceiveFailure:errorMessage];
+            [_viewDelegate connectionDidReceiveFailure:errorMessage];
         } else {
-            [_delegate connectionDidReceiveFailure:@"No data available to download or an error while downloading a data."];
+            [_viewDelegate connectionDidReceiveFailure:@"No data available to download or an error while downloading a data."];
         }
     }
 }

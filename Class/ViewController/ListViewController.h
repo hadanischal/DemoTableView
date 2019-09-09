@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ListViewControllerProtocol.h"
 
-@interface ListViewController : UITableViewController
+@interface ListViewController : UITableViewController<ListViewControllerProtocol>
 
 @end
